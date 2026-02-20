@@ -22,18 +22,21 @@ from django.views.static import serve
 from django.conf import settings
 import os
 
+BASE_OUT = os.path.join(settings.BASE_DIR, "out")
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/accounts/', include('accounts.urls')),
     path('employee/', include('employee.urls')),
     
     
-       # Serve Next.js static files
-    re_path(r'^_next/(?P<path>.*)$',
-        serve,
-        {'document_root': os.path.join(settings.BASE_DIR, 'out/_next')}
-    ),
+       # Serve Next.js _next static assets
+    re_path(r'^_next/(?P<path>.*)$', serve, {'document_root': os.path.join(BASE_OUT, '_next')}),
 
-    # Serve Next.js index
-    re_path(r'^.*$', TemplateView.as_view(template_name="index.html")),
+    # Specific static pages
+    path('employee/', TemplateView.as_view(template_name=os.path.join(BASE_OUT, 'employee.html'))),
+    path('attendance/', TemplateView.as_view(template_name=os.path.join(BASE_OUT, 'attendance.html'))),
+
+    # Catch-all -> index.html
+    re_path(r'^.*$', TemplateView.as_view(template_name=os.path.join(BASE_OUT, 'index.html'))),
 ]
