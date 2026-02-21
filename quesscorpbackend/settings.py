@@ -62,7 +62,7 @@ ROOT_URLCONF = 'quesscorpbackend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'out')],  # Next build folder
+        'DIRS': [os.path.join(BASE_DIR, "out")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
