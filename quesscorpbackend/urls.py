@@ -20,6 +20,7 @@ urlpatterns = [
             {'document_root': os.path.join(BASE_OUT, '_next')}),
 
     path('', TemplateView.as_view(template_name='index.html')),
-    path('employee/', TemplateView.as_view(template_name='employee.html')),
+    # path('employee/', TemplateView.as_view(template_name='employee.html')),
     path('attendance', TemplateView.as_view(template_name='attendance.html')),
+    path('employee', TemplateView.as_view(template_name='employee.html')),
 ]
